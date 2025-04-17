@@ -3,6 +3,7 @@ import torch
 import torchvision.transforms as transforms
 from PIL import Image
 from torchvision import models
+import pandas as pd
 
 image_folder = 'dataset'  
 weight_file = 'pretrained/spaq.pth'  
@@ -40,9 +41,11 @@ def preprocess_image(image_path):
     img = Image.open(image_path).convert('RGB')
     return transform(img).unsqueeze(0)
 
-def assess_images(image_dir, weight_path):
+def assess_images(image_dir, weight_path, save_csv='quality_results.csv'):
     model = load_model(weight_path)
     print(f"\nScanning folder: {image_dir}\n")
+
+    results = []
 
     for root, _, files in os.walk(image_dir):
         for fname in sorted(files):
@@ -56,8 +59,14 @@ def assess_images(image_dir, weight_path):
                     score = score_tensor.item()
                 label = 'Good' if score >= 5 else 'Poor'
                 print(f"Processing: {fpath}\n   → Quality Score: {score:.4f} → {label}\n")
+                results.append({
+                    'file': fpath, 'score': round(score, 4), 'label': label
+                })
             except Exception as e:
                 print(f"Failed to process {fpath}: {e}")
+        
+        df = pd.DataFrame(results)
+        df.to_csv(save_csv, index=False)
 
 if __name__ == "__main__":
     assess_images(image_folder, weight_file)
