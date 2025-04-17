@@ -1,0 +1,51 @@
+------------ Options -------------
+dataset_name: SPAQ
+dataset_root: /home/nhshin/dataset/IQA/SPAQ/
+datasplit_root: ./datasplit/SPAQ/
+training_scheme: random_split
+split: 1
+backbone: resnet50
+model_name: CTV29
+spv_num: 101
+exp_name: 
+image_size: 384
+reduced_dim: 256
+dec_layers: [1, 1, 1]
+batch_size: 18
+test_batch_size: 10
+num_list: 9
+start_iter: 0
+start_eval: 60
+eval_freq: 5
+im_list_len: 150
+im_num: 2
+tau: 0
+margin: 0.1
+optim: AdamW
+scheduler: cosinewarmup
+lr: 5e-05
+weight_decay: 0.0005
+epoch: 100
+test_first: True
+num_workers: 0
+gpu: 1
+wandb: False
+save_folder_parent: ./results/
+save_folder: ./results//SPAQ/CTV29/Back_resnet50_M_CTV29_C256_T0.00__2025-04-17 12:27:11
+load: False
+n_scores: 3126
+score_pivot_score: [  0.     2.     3.07   4.02   4.87   5.81   6.78   7.51   8.54   9.6
+  10.59  11.32  12.21  13.    14.03  15.07  16.16  16.96  17.96  18.92
+  19.91  20.73  21.7   22.63  23.51  24.39  25.41  26.41  27.3   28.17
+  29.17  30.03  31.01  31.93  32.77  33.64  34.64  35.66  36.7   37.55
+  38.46  39.42  40.33  41.25  42.17  43.13  44.16  45.06  45.99  46.92
+  47.88  48.82  49.81  50.75  51.66  52.58  53.48  54.5   55.4   56.3
+  57.25  58.12  59.03  59.99  60.95  61.74  62.67  63.55  64.55  65.53
+  66.57  67.51  68.43  69.44  70.36  71.27  72.22  73.28  74.21  75.05
+  75.89  76.82  77.71  78.6   79.53  80.56  81.56  82.44  83.23  84.23
+  85.21  86.08  87.23  88.22  89.29  90.33  91.2   91.67  92.72  93.91
+ 100.  ]
+reference_point_num: 101
+-------------- End ----------------
+[*] 3126 scores exist.
+[*] 101 reference points.
